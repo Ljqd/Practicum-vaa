@@ -5,7 +5,7 @@ def default_sample_rate():
     return 196000
 
 def location():
-    return "../../data"
+    return "../data/test/"
 
 def amplitude_coef():
     return 0.98

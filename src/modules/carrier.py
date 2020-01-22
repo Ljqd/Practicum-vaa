@@ -54,7 +54,7 @@ class Carrier:
     def __mul__(self, carrier):
         if self.__sample_rate == carrier.sample_rate:
             result = Carrier(0)
-            rd = np.concatenate([self.__data, carrier.data])
+            rd = np.concatenate((self.__data, carrier.data))
             rampl = max(rd) if max(rd) > abs(min(rd)) else abs(min(rd))
 
             result.set([self.__sample_rate, rd, rampl], True)

@@ -52,9 +52,9 @@ def test_filter_with_audio(audio):
 
 def test_filter_with_carriers():
     # Create some simple wave
-    carrier1 = crr.Carrier(1500)
+    carrier1 = crr.Carrier(15)
     plt.subplot_audio_and_frequency([carrier1.sample_rate, carrier1.data])
-    carrier2 = crr.Carrier(2100)
+    carrier2 = crr.Carrier(21)
     plt.subplot_audio_and_frequency([carrier2.sample_rate, carrier2.data])
 
     # Concatenate this wave
@@ -63,5 +63,8 @@ def test_filter_with_carriers():
 
     # Filter merged wave
     audio = bpf.filter([carrier.sample_rate, carrier.data])
+    # print(audio[0])
+    # print(audio[1])
     plt.subplot_audio_and_frequency(audio)
+
     fm.write(const.location() + "test_filter_carriers.wav", audio)
