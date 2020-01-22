@@ -24,8 +24,8 @@ def carrier_am(frequency1, frequency2):
     plt.subplot(audio, am_audio)
 
 
-def am_test():
-    carrier = crr.Carrier(frequency = 35000)
+def am_test(carrier_frequency):
+    carrier = crr.Carrier(frequency = carrier_frequency)
     # plt.show_carrier(carrier)
 
     audio = fm.open("../data/test/OKGOOGLE.wav", carrier.sample_rate)
