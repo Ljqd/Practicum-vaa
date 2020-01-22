@@ -35,11 +35,39 @@ class Carrier:
     # we can add and sub its without modification
     def __add__(self, carrier):
         if self.__sample_rate == carrier.sample_rate:
-            self.__data += carrier.data
+            result = Carrier(0)
+            rd = self.__data + carrier.data
+            rampl = max(rd) if max(rd) > abs(min(rd)) else abs(min(rd))
+
+            result.set([self.__sample_rate, rd, rampl])
+            return result
 
     def __sub__(self, carrier):
         if self.__sample_rate == carrier.sample_rate:
-            self.__data -= carrier.data
+            result = Carrier(0)
+            rd = self.__data - carrier.data
+            rampl = max(rd) if max(rd) > abs(min(rd)) else abs(min(rd))
+
+            result.set([self.__sample_rate, rd, rampl])
+            return result
+
+    def __mul__(self, carrier):
+        if self.__sample_rate == carrier.sample_rate:
+            result = Carrier(0)
+            rd = np.concatenate([self.__data, carrier.data])
+            rampl = max(rd) if max(rd) > abs(min(rd)) else abs(min(rd))
+
+            result.set([self.__sample_rate, rd, rampl], True)
+            return result
+
+
+    # Test func, temp
+    def set(self, carrier_fields : list, duration = False):
+        # [sample_rate, data, amplitude]
+        if duration: self.__duration = 2 * self.__duration
+        self.__sample_rate = carrier_fields[0]
+        self.__data = carrier_fields[1]
+        self.__amplitude = carrier_fields[2]
 
     @property
     def duration(self):

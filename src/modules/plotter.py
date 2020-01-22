@@ -19,6 +19,19 @@ def subplot(audio, am_audio):
     ax[1].plot(am_audio[1])
     plt.show()
 
+def subplot_audio_and_frequency(audio):
+    fig, ax = plt.subplots(1, 2)
+
+    sample_rate = audio[0]
+    data = audio[1]
+
+    X = sc_fft.fft(data)
+    frequencies = sc_fft.fftfreq(len(X)) * sample_rate
+
+    ax[0].plot(audio[1])
+    ax[1].plot(frequencies, abs(X))
+    plt.show()
+
 def plot_frequency(audio):
     sample_rate = audio[0]
     data = audio[1]

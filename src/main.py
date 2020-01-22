@@ -33,8 +33,9 @@ import tests.test as tt
 
 def main():
     # tt.carrier()
-    tt.carrier_am(frequency1 = 1, frequency2 = 10)
-    tt.am_test(carrier_frequency = 25000)
+    # tt.carrier_am(frequency1 = 1, frequency2 = 10)
+    # tt.am_test(carrier_frequency = 25000)
+    tt.test_filter_with_carriers()
 
 
 if __name__ == '__main__':
